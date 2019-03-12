@@ -1,0 +1,4 @@
+Le but de ce projet est d'implémenter les algorithmes KNN et Naive Bayes pour 3 types de problèmes:
+- Classification des Iris (Iris Dataset)
+- Base pour des problèmes MONKS (MONKS Problems Dataset)
+- Base d'enregistrements de votes au Congrès (Congressional Voting Records Dataset)
