@@ -41,21 +41,19 @@ def load_iris_dataset(train_ratio):
     labels = [b'Iris-setosa', b'Iris-versicolor', b'Iris-virginica']
     conv = lambda x: labels.index(x)
     iris_dataframe = np.loadtxt('datasets/bezdekIris.data', delimiter=",", converters={4:conv})
-    # 3 Mixage des records du dataset
+    #2 Mixage des records du dataset
     np.random.shuffle(iris_dataframe)
-    print(iris_dataframe)
-    """
-    #2 Conversion du tableau obtenu en matrix
-    iris_dataframe = iris_dataset.values
-    
-    print(iris_dataframe)
-    #4 Diviser les données en 4 ensembles
+    #3 Diviser les données en 4 ensembles
     iris_dataframe_size = iris_dataframe.shape
-    train_size = iris_dataframe_size[0] * train_ratio
-    train = np.matrix('1 2')
-    print('-------------------')
-    print(train)
-    """
+
+    #train = np.split(iris_dataframe, [0:train_ratio*])
+    #print(train)
+    train_size = (int)(train_ratio * iris_dataframe_size[0])
+    train = iris_dataframe[0:train_size,0:4]
+    train_labels = iris_dataframe[0:train_size, -1:]
+    test = iris_dataframe[train_size:,0:4]
+    test_labels = iris_dataframe[train_size:, -1:]
+    print(test_labels)
 
     # REMARQUE très importante : 
 	# remarquez bien comment les exemples sont ordonnés dans 
