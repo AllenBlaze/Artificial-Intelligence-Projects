@@ -45,15 +45,13 @@ def load_iris_dataset(train_ratio):
     np.random.shuffle(iris_dataframe)
     #3 Diviser les données en 4 ensembles
     iris_dataframe_size = iris_dataframe.shape
-
-    #train = np.split(iris_dataframe, [0:train_ratio*])
-    #print(train)
+    #4 Spliter le dataset en train_set et test_set
     train_size = (int)(train_ratio * iris_dataframe_size[0])
     train = iris_dataframe[0:train_size,0:4]
     train_labels = iris_dataframe[0:train_size, -1:]
     test = iris_dataframe[train_size:,0:4]
     test_labels = iris_dataframe[train_size:, -1:]
-    print(test_labels)
+
 
     # REMARQUE très importante : 
 	# remarquez bien comment les exemples sont ordonnés dans 
@@ -62,8 +60,8 @@ def load_iris_dataset(train_ratio):
     # vous n'allez avoir aucun exemple du type Iris-virginica pour l'entrainement, pensez
     # donc à utiliser la fonction random.shuffle pour melanger les exemples du dataset avant de séparer
     # en train et test.
-       
-    
+
+
     # Tres important : la fonction doit retourner 4 matrices (ou vecteurs) de type Numpy. 
     return (train, train_labels, test, test_labels)
 	
