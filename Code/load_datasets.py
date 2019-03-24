@@ -37,15 +37,15 @@ def load_iris_dataset(train_ratio):
     
     
     # TODO : le code ici pour lire le dataset
-    #1 Lecture du dataset iris et transforamtion des labels en nombre
+    # Lecture du dataset iris et transforamtion des labels en nombre
     labels = [b'Iris-setosa', b'Iris-versicolor', b'Iris-virginica']
     conv = lambda x: labels.index(x)
     iris_dataframe = np.loadtxt('datasets/bezdekIris.data', delimiter=",", converters={4:conv})
-    #2 Mixage des records du dataset
+    # Mixage des records du dataset
     np.random.shuffle(iris_dataframe)
-    #3 Diviser les données en 4 ensembles
+    # Diviser les données en 4 ensembles
     iris_dataframe_size = iris_dataframe.shape
-    #4 Spliter le dataset en train_set et test_set
+    # Spliter le dataset en train_set et test_set
     train_size = (int)(train_ratio * iris_dataframe_size[0])
     train = iris_dataframe[0:train_size,0:4]
     train_labels = iris_dataframe[0:train_size, -1:]
@@ -100,6 +100,25 @@ def load_congressional_dataset(train_ratio):
     
     # Le fichier du dataset est dans le dossier datasets en attaché 
     f = open('datasets/house-votes-84.data', 'r')
+    # Lecture du dataset iris et transforamtion des labels en nombre
+    labels = [b'republican', b'democrat']
+    conv = lambda x: labels.index(x)
+    others_values = [b'n', b'y', b'?']
+    conv2 = lambda x: others_values.index(x)
+    congressional_dataframe = np.loadtxt('datasets/house-votes-84.data', delimiter=",", converters={0: conv, 1: conv2, 2: conv2, 3: conv2,
+                 4: conv2, 5: conv2, 6: conv2, 7: conv2, 8: conv2, 9: conv2, 10: conv2, 11: conv2, 12: conv2,
+                13: conv2, 14: conv2, 15: conv2, 16: conv2})
+
+    # Mixage des records du dataset
+    np.random.shuffle(congressional_dataframe)
+    # Diviser les données en 4 ensembles
+    congressional_dataframe_size = congressional_dataframe.shape
+    # Spliter le dataset en train_set et test_set
+    train_size = int(train_ratio * congressional_dataframe_size[0])
+    train = congressional_dataframe[0:train_size, 1:17]
+    train_labels = congressional_dataframe[0:train_size, 0:1]
+    test = congressional_dataframe[train_size:, 1:17]
+    test_labels = congressional_dataframe[train_size:, 0:1]
 
 	
     # TODO : le code ici pour lire le dataset
@@ -142,9 +161,21 @@ def load_monks_dataset(numero_dataset):
 	
 	# TODO : votre code ici, vous devez lire les fichiers .train et .test selon l'argument numero_dataset
 
+    f1 = open('datasets/monks-' + str(numero_dataset) + '.train', 'r')
+    f2 = open('datasets/monks-' + str(numero_dataset) + '.test', 'r')
+
+    monk_dataset_train = np.loadtxt(f1, delimiter=' ', usecols=(1, 2, 3, 4, 5, 6, 7))
+    monk_dataset_test = np.loadtxt(f2, delimiter=' ', usecols=(1, 2, 3, 4, 5, 6, 7))
+
+    train = monk_dataset_train[0:, 1:6]
+    train_labels = monk_dataset_train[0:, 0:1]
+
+    test = monk_dataset_test[0:, 1: 6]
+    test_labels = monk_dataset_test[0:, 0:1]
+
     # La fonction doit retourner 4 matrices (ou vecteurs) de type Numpy. 
     return (train, train_labels, test, test_labels)
 
 
 if __name__ == '__main__':
-    load_iris_dataset(0.5)
+    load_monks_dataset(3)
