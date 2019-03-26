@@ -121,7 +121,7 @@ class BayesNaif:  # nom de la class à changer
         # presentation de la matrix de confusion
         print('Confusion matrix for training')
         print(train_confusion_matrix)
-        print('')
+        #print('')
         # Calcul de precision et du recall
         for actual_label in range(self.nombre_label_unique):
             precision = self.get_precision_by_label(actual_label, train_confusion_matrix)
@@ -130,7 +130,7 @@ class BayesNaif:  # nom de la class à changer
             recall_output = f"recall of label {actual_label} is {recall}"
             print(presicion_output)
             print(recall_output)
-            print('')
+           # print('')
         accuracy = self.get_accuracy(train_confusion_matrix)
         precision_total = self.get_precision_total(train_confusion_matrix)
         recall_total = self.get_recall_total(train_confusion_matrix)
@@ -200,7 +200,7 @@ class BayesNaif:  # nom de la class à changer
         # presentation de la matrix de confusion
         print('Confusion matrix for testing')
         print(test_confusion_matrix)
-        print('')
+        #print('')
         # Calcul de precision et du recall
         for actual_label in range(self.nombre_label_unique):
             precision = self.get_precision_by_label(actual_label, test_confusion_matrix)
@@ -209,7 +209,7 @@ class BayesNaif:  # nom de la class à changer
             recall_output = f"recall of label {actual_label} is {recall}"
             print(presicion_output)
             print(recall_output)
-            print('')
+            #print('')
         accuracy = self.get_accuracy(test_confusion_matrix)
         precision_total = self.get_precision_total(test_confusion_matrix)
         recall_total = self.get_recall_total(test_confusion_matrix)
