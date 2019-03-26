@@ -93,7 +93,7 @@ k_optimal = knn_vote.get_optimal_k(kmin=1, kmax=6)
 #print('-------Performance générales sur les données de test---------')
 knn_vote.set_nbNeighbors(k_optimal)
 print('Running now on test data with k = ', k_optimal)
-knn_vote.test(iris_test, iris_test_labels)
+knn_vote.test(congressional_test, congressional_test_labels)
 
 
 
@@ -104,7 +104,7 @@ k_optimal = knn_monks.get_optimal_k(kmin=1, kmax=6)
 #print('-------Performance générales sur les données de test---------')
 knn_monks.set_nbNeighbors(k_optimal)
 print('Running now on test data with k = ', k_optimal)
-knn_monks.test(iris_test, iris_test_labels)
+knn_monks.test(monks_test, monks_test_labels)
 
 
 
