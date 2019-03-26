@@ -220,7 +220,7 @@ class Knn:
 		Bien entendu ces tests doivent etre faits sur les données de test seulement
 
 		"""
-
+		test_time_start = time.time()
 
 		# Obtenir le nom de classe disctinct dans le dataset
 		x = np.unique(self.train_labels)
@@ -257,6 +257,8 @@ class Knn:
 			#print('--------------------')
 
 		#self.cross_validation(test, test_labels, 5)
+		test_time_end = time.time()
+		print('Testing time is : ', test_time_end - test_time_start )
 		return  accuracy
 
 	def get_optimal_k(self, kmin,kmax ):

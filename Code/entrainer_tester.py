@@ -41,7 +41,12 @@ iris_train, iris_train_labels, iris_test, iris_test_labels = load_datasets.load_
 congressional_train, congressional_train_labels, congressional_test, \
     congressional_test_labels = load_datasets.load_congressional_dataset(0.7)
 
-monks_train, monks_train_labels, monks_test, monks_test_labels = load_datasets.load_monks_dataset(3)
+# Lecture des données pour monk = 1
+monks_train_1, monks_train_labels_1, monks_tes_1, monks_test_labels_1 = load_datasets.load_monks_dataset(1)
+# Lecture des données pour monk = 2
+monks_trai_2, monks_train_labels_2, monks_test_2, monks_test_labels_2 = load_datasets.load_monks_dataset(2)
+#Lecture des données pour monk = 3
+monks_train_3, monks_train_labels_3, monks_test_3, monks_test_labels_3 = load_datasets.load_monks_dataset(3)
 
 print('----------------------------')
 print('----------------------------')
@@ -68,7 +73,7 @@ knn_vote.train(congressional_train, congressional_train_labels)
 print('--------------------')
 print('MONK DATASET TRAIN')
 print('--------------------')
-knn_monks.train(monks_train, monks_train_labels)
+knn_monks.train(monks_train_3, monks_train_labels_3)
 
 
 # Testez votre classifieur KNN
