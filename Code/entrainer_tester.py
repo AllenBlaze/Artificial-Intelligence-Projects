@@ -29,7 +29,9 @@ k = 3
 
 knn_iris = Knn(k=k)
 knn_vote = Knn(k=k)
-knn_monks = Knn(k=k)
+knn_monks_1 = Knn(k=k)
+knn_monks_2 = Knn(k=k)
+knn_monks_3 = Knn(k=k)
 bayesNaif_iris = BayesNaif()
 bayesNaif_vote = BayesNaif()
 bayesNaif_monks = BayesNaif()
@@ -42,9 +44,9 @@ congressional_train, congressional_train_labels, congressional_test, \
     congressional_test_labels = load_datasets.load_congressional_dataset(0.7)
 
 # Lecture des données pour monk = 1
-monks_train_1, monks_train_labels_1, monks_tes_1, monks_test_labels_1 = load_datasets.load_monks_dataset(1)
+monks_train_1, monks_train_labels_1, monks_test_1, monks_test_labels_1 = load_datasets.load_monks_dataset(1)
 # Lecture des données pour monk = 2
-monks_trai_2, monks_train_labels_2, monks_test_2, monks_test_labels_2 = load_datasets.load_monks_dataset(2)
+monks_train_2, monks_train_labels_2, monks_test_2, monks_test_labels_2 = load_datasets.load_monks_dataset(2)
 #Lecture des données pour monk = 3
 monks_train_3, monks_train_labels_3, monks_test_3, monks_test_labels_3 = load_datasets.load_monks_dataset(3)
 
@@ -73,7 +75,16 @@ knn_vote.train(congressional_train, congressional_train_labels)
 print('--------------------')
 print('MONK DATASET TRAIN')
 print('--------------------')
-knn_monks.train(monks_train_3, monks_train_labels_3)
+print('--------------------')
+
+print('MONK 1')
+knn_monks_1.train(monks_train_1, monks_train_labels_1)
+print('')
+print('MONK 2')
+knn_monks_2.train(monks_train_2, monks_train_labels_2)
+print('')
+print('MONK 3')
+knn_monks_3.train(monks_train_3, monks_train_labels_3)
 
 
 # Testez votre classifieur KNN
@@ -105,13 +116,27 @@ knn_vote.test(congressional_test, congressional_test_labels)
 print('--------------------')
 print('MONKS DATASET TEST')
 print('--------------------')
-k_optimal = knn_monks.get_optimal_k(kmin=1, kmax=6)
+print('')
+print('MONK 1')
+k_optimal = knn_monks_1.get_optimal_k(kmin=1, kmax=6)
 #print('-------Performance générales sur les données de test---------')
-knn_monks.set_nbNeighbors(k_optimal)
+knn_monks_1.set_nbNeighbors(k_optimal)
 print('Running now on test data with k = ', k_optimal)
-knn_monks.test(monks_test_3, monks_test_labels_3)
-
-
+knn_monks_1.test(monks_test_1, monks_test_labels_1)
+print('')
+print('MONK 2')
+k_optimal = knn_monks_2.get_optimal_k(kmin=1, kmax=6)
+#print('-------Performance générales sur les données de test---------')
+knn_monks_2.set_nbNeighbors(k_optimal)
+print('Running now on test data with k = ', k_optimal)
+knn_monks_2.test(monks_test_2, monks_test_labels_2)
+print('')
+print('MONK 3')
+k_optimal = knn_monks_3.get_optimal_k(kmin=1, kmax=6)
+#print('-------Performance générales sur les données de test---------')
+knn_monks_3.set_nbNeighbors(k_optimal)
+print('Running now on test data with k = ', k_optimal)
+knn_monks_3.test(monks_test_3, monks_test_labels_3)
 
 
 '''
