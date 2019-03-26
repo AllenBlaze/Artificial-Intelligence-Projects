@@ -10,6 +10,7 @@ je vais avoir besoin de tester les méthodes test, predict et test de votre code
 
 import numpy as np
 import  math
+import time
 
 
 # le nom de votre classe
@@ -92,6 +93,7 @@ class BayesNaif:  # nom de la class à changer
         nous allons faire d'autres tests sur les données de test dans la méthode test()
         """
 
+        train_time_start = time.time()
         self.train = train
         self.train_labels = train_labels
 
@@ -99,7 +101,7 @@ class BayesNaif:  # nom de la class à changer
         self.liste_label_unique = np.unique(self.train_labels)
         self.nombre_label_unique = len(self.liste_label_unique)
 
-        print("TRAIN")
+
         self.liste_label_sorted = np.sort(self.liste_label_unique)
 
 
@@ -138,6 +140,8 @@ class BayesNaif:  # nom de la class à changer
         print('precision total for train = ', precision_total)
         print('recall total for train = ', recall_total)
         print('')
+        train_time_end = time.time()
+        print('Training time is : ', train_time_end - train_time_start)
 
 
     def predict(self, exemple, label):
@@ -176,14 +180,13 @@ class BayesNaif:  # nom de la class à changer
         Bien entendu ces tests doivent etre faits sur les données de test seulement
 
         """
-
+        test_time_start = time.time()
         self.test = test
         self.test_labels = test_labels
 
         self.liste_label_unique = np.unique(self.train_labels)
         self.nombre_label_unique = len(self.liste_label_unique)
 
-        print("TEST")
 
         # Initiliser la matrix de confusion
         test_confusion_matrix = np.zeros((self.nombre_label_unique, self.nombre_label_unique), dtype=int)
@@ -217,6 +220,9 @@ class BayesNaif:  # nom de la class à changer
         print('precision total for test = ', precision_total)
         print('recall total for test = ', recall_total)
         print('')
+        test_time_end = time.time()
+
+        print('Testing time is : ', test_time_end - test_time_start)
 
 
 
