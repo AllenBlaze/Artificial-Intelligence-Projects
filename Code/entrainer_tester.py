@@ -20,14 +20,16 @@ En gros, vous allez :
 
 # Initializer vos paramètres
 
-k = 1
+k = 3
 
 
 
 # Initializer/instanciez vos classifieurs avec leurs paramètres
 
 
-knn = Knn(k=k)
+knn_iris = Knn(k=k)
+knn_vote = Knn(k=k)
+knn_monks = Knn(k=k)
 bayesNaif_iris = BayesNaif()
 bayesNaif_vote = BayesNaif()
 bayesNaif_monks = BayesNaif()
@@ -41,9 +43,82 @@ congressional_train, congressional_train_labels, congressional_test, \
 
 monks_train, monks_train_labels, monks_test, monks_test_labels = load_datasets.load_monks_dataset(3)
 
-# Entrainez votre classifieur
+print('----------------------------')
+print('----------------------------')
+print('CLASSIFIEUR DE KNN')
+print('----------------------------')
+print('----------------------------')
 
-#knn.train(train, train_labels)
+
+# Entrainez votre classifieur KNN
+print('--------------------')
+print('IRIS DATASET TRAIN')
+print('--------------------')
+knn_iris.train(iris_train, iris_train_labels)
+
+
+
+print('--------------------')
+print('VOTE DATASET TRAIN')
+print('--------------------')
+knn_vote.train(congressional_train, congressional_train_labels)
+
+
+
+print('--------------------')
+print('MONK DATASET TRAIN')
+print('--------------------')
+knn_monks.train(monks_train, monks_train_labels)
+
+
+# Testez votre classifieur KNN
+
+
+
+print('--------------------')
+print('IRIS DATASET TEST')
+print('--------------------')
+k_optimal = knn_iris.get_optimal_k(kmin=1, kmax=6)
+#print('-------Performance générales sur les données de test---------')
+knn_iris.set_nbNeighbors(k_optimal)
+print('Running now on test data with k = ', k_optimal)
+knn_iris.test(iris_test, iris_test_labels)
+
+
+
+print('--------------------')
+print('VOTE DATASET TEST')
+print('--------------------')
+k_optimal = knn_vote.get_optimal_k(kmin=1, kmax=6)
+#print('-------Performance générales sur les données de test---------')
+knn_vote.set_nbNeighbors(k_optimal)
+print('Running now on test data with k = ', k_optimal)
+knn_vote.test(iris_test, iris_test_labels)
+
+
+
+print('--------------------')
+print('MONKS DATASET TEST')
+print('--------------------')
+k_optimal = knn_monks.get_optimal_k(kmin=1, kmax=6)
+#print('-------Performance générales sur les données de test---------')
+knn_monks.set_nbNeighbors(k_optimal)
+print('Running now on test data with k = ', k_optimal)
+knn_monks.test(iris_test, iris_test_labels)
+
+
+
+
+'''
+print('----------------------------')
+print('----------------------------')
+print('CLASSIFIEUR NAIF DE BAYES')
+print('----------------------------')
+print('----------------------------')
+# Entrainez votre classifieur NAIF BAYES
+
+
+
 print('--------------------')
 print('IRIS DATASET TRAIN')
 print('--------------------')
@@ -59,8 +134,7 @@ print('MONKS DATASET TRAIN')
 print('--------------------')
 bayesNaif_monks.train(monks_train, monks_train_labels)
 
-
-# Tester votre classifieur
+# Tester votre classifieur NAIF BAYES
 
 #knn.test(test, test_labels)
 print('--------------------')
@@ -77,3 +151,6 @@ print('--------------------')
 print('MONKS DATASET TEST')
 print('--------------------')
 bayesNaif_monks.test(monks_test, monks_test_labels)
+'''
+
+
