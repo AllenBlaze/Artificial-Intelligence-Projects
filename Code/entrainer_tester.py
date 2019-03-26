@@ -153,4 +153,3 @@ print('--------------------')
 bayesNaif_monks.test(monks_test, monks_test_labels)
 '''
 
-

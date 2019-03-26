@@ -11,6 +11,7 @@ je vais avoir besoin de tester les méthodes test, predict et test de votre code
 
 import numpy as np
 import math
+import time
 
 
 # le nom de votre classe
@@ -131,7 +132,7 @@ class Knn:
 
 
 
-
+		train_time_start = time.time()
 
 		self.train = train
 		self.train_labels = train_labels
@@ -164,6 +165,8 @@ class Knn:
 		print('precision total for train = ', precision_total)
 		print('recall total for train = ', recall_total)
 		print('')
+		train_time_end = time.time()
+		print('Training time is : ', train_time_end - train_time_start)
 
 		#self.get_optimal_k(self.k, 5)
 
