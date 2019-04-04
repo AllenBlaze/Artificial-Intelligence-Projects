@@ -237,16 +237,7 @@ class Knn:
 		#Calcul de precision et du recall
 		label_nummber = np.unique(test_labels)
 		label_size = np.array(label_nummber, dtype= int)
-		'''
-		for actual_label in label_size:
-			accuracy = self.get_accuracy(test_confusion_matrix)
-			precision = self.get_precision(actual_label, test_confusion_matrix)
-			presicion_output = f"precision of label {actual_label} is {precision}"
-			recall = self.get_recall(actual_label, test_confusion_matrix)
-			recall_output = f"recall of label {actual_label} is {recall}"
-			print(presicion_output)
-			print(recall_output)
-		'''
+
 		accuracy = self.get_accuracy(test_confusion_matrix)
 		precision_total = self.get_precision_total(test_confusion_matrix)
 		recall_total = self.get_recall_total(test_confusion_matrix)
@@ -339,31 +330,7 @@ class Knn:
 
 		return list_L_fold_accuracy.mean()
 
-		"""
-			train_k_fold = self.get_data_k_fold(train, L)
-			label_k_fold = self.get_label_k_fold(train_labels, L)
 
-			validation_data = train_k_fold[index]
-			validation_data_label = label_k_fold[index]
-
-			del train_k_fold[index]
-			del label_k_fold[index]
-
-
-			train_data = np.concatenate(train_k_fold, axis=0)
-			train_data_label = np.concatenate(label_k_fold, axis=0)
-			accuracy = self.test(validation_data, validation_data_label)
-			print("Accuracy is : ", accuracy)
-			list_L_fold_accuracy.append(accuracy)
-
-			self.init_train_data(train, train_labels)
-
-		L_fold_sum = sum(list_L_fold_accuracy)
-		L_fold_length = len(list_L_fold_accuracy)
-		L_fold_mean = L_fold_sum / L_fold_length
-
-		return L_fold_mean
-		"""
 
 	def get_it(self, test, test_labels):
 		d = 1
@@ -397,39 +364,6 @@ class Knn:
 		self.k = k
 
 
-
-
-		'''
-		#k_min = self.k
-		#k_max = 5
-		train_k_fold = self.get_data_k_fold(train, L)
-		label_k_fold = self.get_label_k_fold(train_labels, L)
-		for index in range(L):
-
-
-			test_data = train_k_fold[index]
-			del train_k_fold[index]
-			train_data = train_k_fold
-			train_data = np.concatenate(train_data, axis=0)
-
-
-			test_data_label = label_k_fold[index]
-			del label_k_fold[index]
-			train_data_label = label_k_fold
-			train_data_label = np.concatenate(train_data_label, axis=0)
-
-			#for k in range(k_max):
-
-			#	print('test data is : ', test_data)
-			#	print('train data is : ', train_data)
-			print('------------- le train -------------- ')
-
-			#self.train(train_data, train_data_label)
-
-			train_k_fold = self.get_data_k_fold(train, L)
-			label_k_fold = self.get_label_k_fold(train_labels, L)
-			
-		'''
 
 	# Vous pouvez rajouter d'autres méthodes et fonctions,
 	# il suffit juste de les commenter.
